@@ -1,0 +1,15 @@
+[package]
+name = "rust-backend"
+version = "0.1.2"
+edition = "2021"
+license = "MIT"
+authors = ["YosakuraTohu <sherlock_lopez@outlook.com>"]
+repository = "https://github.com/YosakuraTohu/ExtremeBlog"
+homepage = "https://github.com/YosakuraTohu/ExtremeBlog"
+
+[dependencies]
+wasm-bindgen = "0.2.84"
+yew = { version = "0.20.0", features = ["csr"] }
+
+[lib]
+crate-type = ["rlib", "cdylib"]
