@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./rust-backend/src/**/*.rs"],
+  content: ["./src/**/*.{html,js,ts}", "./rust-backend/src/**/*.rs"],
   theme: {
     extend: {},
   },

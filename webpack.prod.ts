@@ -1,9 +1,10 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 import * as path from "path";
 import * as webpack from "webpack";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { GenerateSW } from "workbox-webpack-plugin";
 import WebpackPwaManifest from "webpack-pwa-manifest";
 
@@ -14,10 +15,11 @@ const config: webpack.Configuration = {
   },
   entry: path.resolve(__dirname, "src/main.ts"),
   output: {
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+    asyncChunks: true
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -29,9 +31,10 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html")
     }),
+    new MiniCssExtractPlugin(),
     new WasmPackPlugin({
       crateDirectory: path.resolve(__dirname, "rust-backend"),
-      outDir: path.resolve(__dirname, "rust-backend/pkg"),
+      outDir: path.resolve(__dirname, "rust-backend/pkg")
     }),
     new GenerateSW({
       clientsClaim: true,
@@ -41,6 +44,7 @@ const config: webpack.Configuration = {
       name: "KinareYuki's Extrame Blog",
       short_name: "Yuki's Blog",
       description: "Kinare Yuki's extrame blog, build with rust and typescript.",
+      theme_color: "#fdfdfd",
       background_color: "#fdfdfd",
       crossorigin: "use-credentials",
       orientation: "portrait",
@@ -97,8 +101,14 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
       }
+    ]
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+      "..."
     ]
   }
 };

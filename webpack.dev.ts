@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 import * as path from "path";
 import * as webpack from "webpack";
@@ -21,9 +22,10 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html")
     }),
+    new MiniCssExtractPlugin(),
     new WasmPackPlugin({
       crateDirectory: path.resolve(__dirname, "rust-backend"),
-      outDir: path.resolve(__dirname, "rust-backend/pkg"),
+      outDir: path.resolve(__dirname, "rust-backend/pkg")
     })
   ],
   module: {
@@ -37,7 +39,7 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
       }
     ]
   }
