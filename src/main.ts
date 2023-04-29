@@ -1,11 +1,19 @@
 import "./sytle.css";
 
 import("../rust-backend/pkg").then(RustBackend => {
-  RustBackend.main();
-}).finally(() => {
-  document.getElementById("mask-child")?.remove();
-  document.getElementById("mask")?.classList.add("opacity-0");
-  setTimeout(() => document.getElementById("mask")?.remove(), 500);
+  try {
+    return RustBackend.main();
+  } catch {
+    return false;
+  }
+}).then(status => {
+  if (status) {
+    document.getElementById("mask-child")?.remove();
+    document.getElementById("mask")?.classList.add("opacity-0");
+    setTimeout(() => document.getElementById("mask")?.remove(), 500);
+  } else {
+    document.getElementById("message")!.innerText = "Your browser does not support WebAssembly.";
+  }
 });
 
 if (process.env.NODE_ENV === "production") {

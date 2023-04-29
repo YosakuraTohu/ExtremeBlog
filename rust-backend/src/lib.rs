@@ -15,8 +15,10 @@ fn App() -> Html {
 }
 
 #[wasm_bindgen]
-pub fn main() {
+pub fn main() -> Result<bool, bool> {
     let document = gloo::utils::document();
     let container = document.get_element_by_id("container").unwrap();
     yew::Renderer::<App>::with_root(container).render();
+
+    Ok(true)
 }
