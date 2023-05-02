@@ -1,0 +1,11 @@
+.preload-mask {
+  @apply h-screen w-screen absolute top-0 left-0 flex flex-col justify-center items-center bg-gradient-to-t from-sky-200 to-blue-100 duration-500;
+}
+
+.preload-mask-opacity {
+  @apply opacity-0;
+}
+
+.preload-mask-child {
+  @apply inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-full text-slate-50/75 bg-gray-500/25 backdrop-blur;
+}
