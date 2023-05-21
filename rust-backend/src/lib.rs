@@ -1,5 +1,7 @@
 mod app;
 mod components;
+mod store;
+mod utils;
 
 extern crate wasm_bindgen;
 use app::App;

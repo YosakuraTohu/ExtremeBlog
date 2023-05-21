@@ -1,5 +1,5 @@
 .components-navigation {
-  @apply fixed top-0 left-0 right-0 transition-colors bg-gray-500/25 backdrop-blur flex items-center justify-between flex-wrap px-6 py-1;
+  @apply w-full lg:rounded-b-md top-0 left-0 right-0 sticky z-50 transition-colors bg-gray-500/25 backdrop-blur flex items-center justify-between flex-wrap px-6 py-1;
 }
 
 .components-navigation-title {
@@ -23,7 +23,7 @@
 }
 
 .components-navigation-item-button {
-  @apply decoration-2 decoration-sky-200 rounded-lg px-3 font-light text-transparent transition-colors bg-slate-50/75 bg-clip-text hover:bg-clip-border hover:text-slate-600/75;
+  @apply decoration-2 decoration-sky-200 rounded-md px-3 font-light text-transparent transition-colors bg-slate-50/75 bg-clip-text hover:bg-clip-border hover:text-slate-600/75;
 }
 
 .components-navigation-item-button-focus {

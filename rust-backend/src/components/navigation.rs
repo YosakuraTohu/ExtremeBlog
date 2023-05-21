@@ -1,12 +1,7 @@
 use yew::prelude::*;
+use yewdux::prelude::*;
 
-fn toggle<T>(state: bool, sigin: T) -> Option<T> {
-    if state {
-        Some(sigin)
-    } else {
-        None
-    }
-}
+use crate::{store::GlobalState, utils::css_toggle};
 
 #[derive(Clone, PartialEq, Properties)]
 struct NavigationButtonProps {
@@ -19,16 +14,24 @@ fn NavigationButton(props: &NavigationButtonProps) -> Html {
     let NavigationButtonProps { name, focus } = props;
 
     html! {
-        <a href={ "#" } class={classes!("components-navigation-item-button", toggle(*focus, "components-navigation-item-button-focus"))}>{ name }</a>
+        <a href={ "#" } class={classes!("components-navigation-item-button", css_toggle(*focus, "components-navigation-item-button-focus"))}>{ name }</a>
     }
 }
 
 #[function_component]
 pub fn Navigation() -> Html {
-    let toggle_bar_state = use_state(|| true);
+    let (_, dispatch) = use_store::<GlobalState>();
+
+    let toggle_bar_state = use_state(|| false);
     let toggle_bar = {
         let toggle_bar_state = toggle_bar_state.clone();
-        Callback::from(move |_| toggle_bar_state.set(!*toggle_bar_state))
+        dispatch.reduce(|_state| {
+            GlobalState {
+                sidebar_toggle: !*toggle_bar_state.clone(),
+            }
+            .into()
+        });
+        move |_| toggle_bar_state.set(!*toggle_bar_state)
     };
 
     html! {

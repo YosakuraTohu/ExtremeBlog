@@ -1,5 +1,5 @@
 .main-root {
-  @apply flex flex-col px-2 justify-center items-center h-screen w-screen bg-gradient-to-r from-sky-200 to-blue-100 font-semibold leading-6 text-sm shadow;
+  @apply sm:mx-auto flex flex-col lg:rounded-md px-2 justify-center items-center w-full font-semibold leading-6 text-sm shadow;
 }
 
 .main-headimg {

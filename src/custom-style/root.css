@@ -1,0 +1,11 @@
+.root {
+  @apply bg-gradient-to-r from-sky-200 to-blue-100;
+}
+
+.app {
+  @apply lg:container sm:mx-auto sm:flex sm:flex-wrap xl:max-w-7xl;
+}
+
+.section {
+  @apply flex w-full lg:pt-4;
+}

@@ -1,0 +1,11 @@
+.components-sidebar {
+  @apply fixed flex flex-col lg:rounded-md h-full w-full px-6 py-1 transition-all lg:mr-6 sm:sticky sm:h-fit sm:w-[30em] sm:left-auto bg-gray-500/25 backdrop-blur duration-500;
+}
+
+.components-sidebar-toggle {
+  @apply -translate-x-full sm:translate-x-0;
+}
+
+.components-sidebar-item {
+  @apply decoration-2 decoration-sky-200 rounded-md px-3 font-light text-transparent transition-colors bg-slate-50/75 bg-clip-text;
+}
